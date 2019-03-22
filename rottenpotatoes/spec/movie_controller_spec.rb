@@ -7,7 +7,7 @@ describe MoviesController, type: 'controller' do
       describe 'movie has a director' do
         # integration test (route spec)
         it 'responds to the search_directors route' do
-          @movie = Movie.create(:id => "100", title: "Titanic", director: "Director")
+          @movie = Movie.create(:id => "100", title: "Titanic", director: "Director1")
           get :search_directors, { id: 100 }
           end
         end 
@@ -15,15 +15,15 @@ describe MoviesController, type: 'controller' do
       describe 'search similar movies' do
         it 'queries the Movie model about similar movies' do
           # YOUR TEST CODE HERE
-          @movie_1 = Movie.create(:id => "200", title: "Shrek", director: "Director_1")
+          @movie_1 = Movie.create(:id => "204", title: "Titanic", director: "Director1")
           get :search_directors, id: @movie_1[:id]
           expect(response).to redirect_to(movies_path)
           #fail
         end
         
         it 'assigns similar movies to the template' do
-          @movie_2 = Movie.create(:id => "201", title: "Green Book", director: "Director_2")
-          @movie_3 = Movie.create(:id => "202", title: "Inception", director: "Director_2")
+          @movie_2 = Movie.create(:id => "205", title: "Green Book", director: "Director1")
+          @movie_3 = Movie.create(:id => "206", title: "Inception", director: "Director1")
           get :search_directors, id:@movie_2[:id]
           expect(Movie.where(:director => @movie_2.director).size).to eq(2)
           #fail
