@@ -32,6 +32,7 @@
 
 
 
+
 default: &default
   adapter: postgresql
   encoding: unicode
